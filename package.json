@@ -2,17 +2,25 @@
   "name": "component-status-codes",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-	"tsc": "tsc",
+    "start": "tsc-watch --watch lib/**/*.ts tsc",
+    "build": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@types/node": "^13.7.1"
   }
 }
