@@ -27,7 +27,9 @@ export declare namespace STATUS_CODES {
         EMAIL_PROVIDER_ERROR = 1021,
         PHONE_PROVIDER_ERROR = 1022,
         OTP_SENT = 1023,
-        INVALID_OTP_TYPE = 1024
+        INVALID_OTP_TYPE = 1024,
+        EMAIL_NOT_VERIFIED = 1025,
+        PHONE_NOT_VERIFIED = 1026
     }
     let CUSTOM_CODES: any;
     function getStatusText(statusCode: number): string;
