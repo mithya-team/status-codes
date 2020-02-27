@@ -1,4 +1,3 @@
-declare type TStatusCode = keyof typeof STATUS_CODES.AUTH;
 declare type TKeys = keyof typeof STATUS_CODES;
 export declare namespace STATUS_CODES {
     enum AUTH {
@@ -33,9 +32,7 @@ export declare namespace STATUS_CODES {
     }
     let CUSTOM_CODES: any;
     function getStatusText(statusCode: number): string;
-    function getStatusNumber(statusCode: TStatusCode): number;
-    function getCustomStatusCode(statusCode: string): string;
-    function getCustomStatusNumber(statusCode: number): number;
+    function getStatusNumber(statusCode: string): number;
     function addStatusCode(type: TKeys, keyVal: {
         string: number;
     }): void;

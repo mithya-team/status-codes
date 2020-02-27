@@ -38,15 +38,24 @@ var STATUS_CODES;
         let numTotext = Object.values(STATUS_CODES).map((i) => {
             return i[statusCode];
         });
-        return numTotext.filter(x => x)[0];
+        let statusText = numTotext.filter(x => x)[0];
+        if (!statusText) {
+            return getCustomStatusCode(statusCode);
+        }
+        return statusText;
     }
     STATUS_CODES.getStatusText = getStatusText;
     ;
     function getStatusNumber(statusCode) {
+        //checking in pre-defined first
         let textToNum = Object.values(STATUS_CODES).map((i) => {
             return i[statusCode];
         });
-        return textToNum.filter(i => i)[0];
+        let statusNumber = textToNum.filter(i => i)[0];
+        if (!statusNumber) {
+            return getCustomStatusNumber(statusCode);
+        }
+        return statusNumber;
     }
     STATUS_CODES.getStatusNumber = getStatusNumber;
     ;
@@ -57,7 +66,6 @@ var STATUS_CODES;
         });
         return numTotext[0];
     }
-    STATUS_CODES.getCustomStatusCode = getCustomStatusCode;
     function getCustomStatusNumber(statusCode) {
         let numTotext = Object.values(STATUS_CODES.CUSTOM_CODES)
             .map((context) => {
@@ -67,7 +75,6 @@ var STATUS_CODES;
         });
         return numTotext[0];
     }
-    STATUS_CODES.getCustomStatusNumber = getCustomStatusNumber;
     function addStatusCode(type, keyVal) {
         STATUS_CODES.CUSTOM_CODES[type] = Object.assign(Object.assign({}, STATUS_CODES.CUSTOM_CODES[type]), keyVal);
     }
