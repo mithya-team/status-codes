@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 type TStatusCode = keyof typeof STATUS_CODES.AUTH
 type TKeys = keyof typeof STATUS_CODES
 export namespace STATUS_CODES {
@@ -33,54 +34,87 @@ export namespace STATUS_CODES {
 
     }
 
-    export let CUSTOM_CODES: any = {
+    export const CUSTOM_CODES: any = {
 
-    }
+    };
 
+    /**
+     * Gets status text from number
+     * @param {Number} statusCode
+     * @return {string} status text
+     */
     export function getStatusText(statusCode: number): string {
-        let numTotext = Object.values(STATUS_CODES).map((i: any) => {
-            return i[statusCode]
-        })
-        let statusText = numTotext.filter(x => x)[0]
+        const numTotext = Object.values(STATUS_CODES).map((i: any) => {
+            return i[statusCode];
+        });
+        const statusText = numTotext.filter((x) => x)[0];
         if (!statusText) {
-            return getCustomStatusCode(statusCode)
+            return getCustomStatusCode(statusCode);
         }
-        return statusText
+        return statusText;
     };
 
-
-    export function getStatusNumber(statusCode: string): number {
-        //checking in pre-defined first
-        let textToNum = Object.values(STATUS_CODES).map((i: any) => {
-            return i[statusCode]
-        })
-        let statusNumber = textToNum.filter(i => i)[0]
+    /**
+     * Gets status number from text.
+     * @param {String} statusText
+     * @return {Number} status number
+     */
+    export function getStatusNumber(statusText: string): number {
+        // checking in pre-defined first
+        const textToNum = Object.values(STATUS_CODES).map((i: any) => {
+            return i[statusText];
+        });
+        const statusNumber = textToNum.filter((i) => i)[0];
         if (!statusNumber) {
-            return getCustomStatusNumber(statusCode)
+            return getCustomStatusNumber(statusText);
         }
-        return statusNumber
+        return statusNumber;
     };
 
+    /**
+     * 
+     * @param {Number} statusCode
+     *  @return {String}
+     */
     function getCustomStatusCode(statusCode: number): string {
-        let numTotext = Object.values(CUSTOM_CODES)
+        const numTotext = Object.values(CUSTOM_CODES)
             .map((context: any) => {
-                return Object.keys(context).filter((key: any) => context[key] === statusCode)[0]
-            })
-        return numTotext[0]
+                return Object.keys(context).filter((key: any) => context[key] === statusCode)[0];
+            });
+        return numTotext[0];
     }
 
-    function getCustomStatusNumber(statusCode: string): number {
-        let numTotext = Object.values(CUSTOM_CODES)
+    /**
+     * 
+     * @param {String} statusText
+     * @return {Number}
+     */
+    function getCustomStatusNumber(statusText: string): number {
+        const numTotext = Object.values(CUSTOM_CODES)
             .map((context: any) => {
-                if (context.hasOwnProperty(statusCode)) {
-                    return context[statusCode]
+                if (context.hasOwnProperty(statusText)) {
+                    return context[statusText];
                 }
-            })
-        return numTotext[0]
+            });
+        return numTotext[0];
     }
 
+
+    /**
+     * Adds status code to CUSTOM_CODES.
+     * @param {TKeys} type Category for this status code.
+     * @param {object} keyVal Key Value pair for status code.
+     * @example 
+     *      addStatusCode('AUTH',
+    *               {
+    *                   'CUSTOM_CODE' : 69
+    *               }
+    *           )
+    * 
+    *  
+    */
     export function addStatusCode(type: TKeys, keyVal: { string: number }) {
-        CUSTOM_CODES[type] = { ...CUSTOM_CODES[type], ...keyVal }
+        CUSTOM_CODES[type] = { ...CUSTOM_CODES[type], ...keyVal };
     }
 
 }

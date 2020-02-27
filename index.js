@@ -34,11 +34,16 @@ var STATUS_CODES;
         AUTH[AUTH["PHONE_NOT_VERIFIED"] = 1026] = "PHONE_NOT_VERIFIED";
     })(AUTH = STATUS_CODES.AUTH || (STATUS_CODES.AUTH = {}));
     STATUS_CODES.CUSTOM_CODES = {};
+    /**
+     * Gets status text from number
+     * @param {Number} statusCode
+     * @return {string} status text
+     */
     function getStatusText(statusCode) {
-        let numTotext = Object.values(STATUS_CODES).map((i) => {
+        const numTotext = Object.values(STATUS_CODES).map((i) => {
             return i[statusCode];
         });
-        let statusText = numTotext.filter(x => x)[0];
+        const statusText = numTotext.filter((x) => x)[0];
         if (!statusText) {
             return getCustomStatusCode(statusCode);
         }
@@ -46,35 +51,63 @@ var STATUS_CODES;
     }
     STATUS_CODES.getStatusText = getStatusText;
     ;
-    function getStatusNumber(statusCode) {
-        //checking in pre-defined first
-        let textToNum = Object.values(STATUS_CODES).map((i) => {
-            return i[statusCode];
+    /**
+     * Gets status number from text.
+     * @param {String} statusText
+     * @return {Number} status number
+     */
+    function getStatusNumber(statusText) {
+        // checking in pre-defined first
+        const textToNum = Object.values(STATUS_CODES).map((i) => {
+            return i[statusText];
         });
-        let statusNumber = textToNum.filter(i => i)[0];
+        const statusNumber = textToNum.filter((i) => i)[0];
         if (!statusNumber) {
-            return getCustomStatusNumber(statusCode);
+            return getCustomStatusNumber(statusText);
         }
         return statusNumber;
     }
     STATUS_CODES.getStatusNumber = getStatusNumber;
     ;
+    /**
+     *
+     * @param {Number} statusCode
+     *  @return {String}
+     */
     function getCustomStatusCode(statusCode) {
-        let numTotext = Object.values(STATUS_CODES.CUSTOM_CODES)
+        const numTotext = Object.values(STATUS_CODES.CUSTOM_CODES)
             .map((context) => {
             return Object.keys(context).filter((key) => context[key] === statusCode)[0];
         });
         return numTotext[0];
     }
-    function getCustomStatusNumber(statusCode) {
-        let numTotext = Object.values(STATUS_CODES.CUSTOM_CODES)
+    /**
+     *
+     * @param {String} statusText
+     * @return {Number}
+     */
+    function getCustomStatusNumber(statusText) {
+        const numTotext = Object.values(STATUS_CODES.CUSTOM_CODES)
             .map((context) => {
-            if (context.hasOwnProperty(statusCode)) {
-                return context[statusCode];
+            if (context.hasOwnProperty(statusText)) {
+                return context[statusText];
             }
         });
         return numTotext[0];
     }
+    /**
+     * Adds status code to CUSTOM_CODES.
+     * @param {TKeys} type Category for this status code.
+     * @param {object} keyVal Key Value pair for status code.
+     * @example
+     *      addStatusCode('AUTH',
+    *               {
+    *                   'CUSTOM_CODE' : 69
+    *               }
+    *           )
+    *
+    *
+    */
     function addStatusCode(type, keyVal) {
         STATUS_CODES.CUSTOM_CODES[type] = Object.assign(Object.assign({}, STATUS_CODES.CUSTOM_CODES[type]), keyVal);
     }

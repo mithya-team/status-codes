@@ -30,9 +30,32 @@ export declare namespace STATUS_CODES {
         EMAIL_NOT_VERIFIED = 1025,
         PHONE_NOT_VERIFIED = 1026
     }
-    let CUSTOM_CODES: any;
+    const CUSTOM_CODES: any;
+    /**
+     * Gets status text from number
+     * @param {Number} statusCode
+     * @return {string} status text
+     */
     function getStatusText(statusCode: number): string;
-    function getStatusNumber(statusCode: string): number;
+    /**
+     * Gets status number from text.
+     * @param {String} statusText
+     * @return {Number} status number
+     */
+    function getStatusNumber(statusText: string): number;
+    /**
+     * Adds status code to CUSTOM_CODES.
+     * @param {TKeys} type Category for this status code.
+     * @param {object} keyVal Key Value pair for status code.
+     * @example
+     *      addStatusCode('AUTH',
+    *               {
+    *                   'CUSTOM_CODE' : 69
+    *               }
+    *           )
+    *
+    *
+    */
     function addStatusCode(type: TKeys, keyVal: {
         string: number;
     }): void;
