@@ -28,7 +28,10 @@ export declare namespace STATUS_CODES {
         OTP_SENT = 1023,
         INVALID_OTP_TYPE = 1024,
         EMAIL_NOT_VERIFIED = 1025,
-        PHONE_NOT_VERIFIED = 1026
+        PHONE_NOT_VERIFIED = 1026,
+        INVALID_COUNTRY_CODE = 1027,
+        INVALID_PHONE_NUMBER = 1028,
+        INVALID_EMAIL = 1029
     }
     const CUSTOM_CODES: any;
     /**

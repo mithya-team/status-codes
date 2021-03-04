@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.STATUS_CODES = void 0;
 var STATUS_CODES;
 (function (STATUS_CODES) {
     let AUTH;
@@ -32,6 +33,9 @@ var STATUS_CODES;
         AUTH[AUTH["INVALID_OTP_TYPE"] = 1024] = "INVALID_OTP_TYPE";
         AUTH[AUTH["EMAIL_NOT_VERIFIED"] = 1025] = "EMAIL_NOT_VERIFIED";
         AUTH[AUTH["PHONE_NOT_VERIFIED"] = 1026] = "PHONE_NOT_VERIFIED";
+        AUTH[AUTH["INVALID_COUNTRY_CODE"] = 1027] = "INVALID_COUNTRY_CODE";
+        AUTH[AUTH["INVALID_PHONE_NUMBER"] = 1028] = "INVALID_PHONE_NUMBER";
+        AUTH[AUTH["INVALID_EMAIL"] = 1029] = "INVALID_EMAIL";
     })(AUTH = STATUS_CODES.AUTH || (STATUS_CODES.AUTH = {}));
     STATUS_CODES.CUSTOM_CODES = {};
     /**
